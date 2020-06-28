@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Country from "./Country";
 import '../styles/Data.css';
 
 class Data extends Component {
@@ -35,8 +36,14 @@ class Data extends Component {
       <div className="Data">
         {this.state.data?.response.map(data => (
           <div className="New-Country">
-          <h1>{data.country}</h1>
-          <h2>Current Number of Active Cases: {data.cases.active}</h2>
+             <h1>{data.country}</h1>
+          <Country 
+          activeCases={data.cases.active}
+          totalCases={data.cases.total}
+          recoveredCases={data.cases.recovered}
+          deaths={data.deaths.total}
+          population={data.population}
+          />
           </div>
           
           ))}

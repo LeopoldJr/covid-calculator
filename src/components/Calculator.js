@@ -11,62 +11,75 @@ class Calculator extends Component {
     super(props);
     //this.state = {caption: "", image: ""}
     this.Compute = this.Compute.bind(this);
-    this.percentage = 0;
+    //this.percentage = 0;
+    this.state = {percentage: "0"};
   }
 
 
-  state = {
-    data: null,
-  }
-  componentDidMount(){
+  // state = {
+  //   percentage: 0,
+  // }
+  // componentDidMount(){
 
-    const axios = require("axios");
+  //   const axios = require("axios");
 
-    axios({
-        "method":"GET",
-        "url":"https://covid-193.p.rapidapi.com/statistics",
-        "headers":{
-        "content-type":"application/octet-stream",
-        "x-rapidapi-host":"covid-193.p.rapidapi.com",
-        "x-rapidapi-key":"d7f84a0792msh14582687a63a511p13fb05jsn4b67c16f280a",
-        "useQueryString":true
-        }
-        })
-        .then((response)=>{
-          this.setState({ data: response.data })
-        })
-        .catch((error)=>{
-          console.log(error)
-        })
+  //   axios({
+  //       "method":"GET",
+  //       "url":"https://covid-193.p.rapidapi.com/statistics",
+  //       "headers":{
+  //       "content-type":"application/octet-stream",
+  //       "x-rapidapi-host":"covid-193.p.rapidapi.com",
+  //       "x-rapidapi-key":"d7f84a0792msh14582687a63a511p13fb05jsn4b67c16f280a",
+  //       "useQueryString":true
+  //       }
+  //       })
+  //       .then((response)=>{
+  //         this.setState({ data: response.data })
+  //       })
+  //       .catch((error)=>{
+  //         console.log(error)
+  //       })
     
-  }
-
-  Compute(country, numOfContacts, isQuaratined, isFrequentlyOutside) {
-    //const [numOfCases, changeNumOfCases, resetCases] = useInputState("");
+  // }
+  Compute( countryCases, countryPopulation, numOfContacts, isQuaratined, isFrequentlyOutside) {
+    //e.preventDefault();
     let total = 100;
     let contactNum = parseInt(numOfContacts);
 
     //changeNumOfCases(50);
-    let numOfCases = country;
-    let cases = parseInt(numOfCases);
-    
+    let cases = parseInt(countryCases);
+    let population = parseInt(countryPopulation);
 
   
 
     //numOfCases = parseInt
-    total = cases + contactNum;
+    let casesRatio = (cases * 10)/population ;
+    total = total * casesRatio;
     
     if (isQuaratined == true) {
-      total = total + 1;
+      total = total * 0.8;
+    } else {
+      total = total * 2;
     }
+
     if (isFrequentlyOutside == true) {
-      total = total + 1;
+      total = total * 0.8;
+    } else {
+      total = total * 2;
     }
+
+    if (contactNum >= 5) {
+      total = total * 2;
+    }
+
+    
     console.log("Done!");
     console.log(`number of cases: ${cases}`);
+    console.log(`Cases Ratio: ${casesRatio}`)
     console.log(`total: ${total}`);
 
-    this.percentage = total;
+    //return { percentage: `${total}` }
+    this.setState({ percentage: `${total.toFixed(2)}%` });
   }
   
 
@@ -74,8 +87,9 @@ class Calculator extends Component {
     return (
       <div className="Calculator">
         <Form calculate={this.Compute} />
-        {/* {this.percentage}
-        {this.state.data?.response.map(data => (
+        <h1>{this.state.percentage}</h1>
+        
+        {/* {this.state.data?.response.map(data => (
           
         <h1>{data.country}</h1>
         

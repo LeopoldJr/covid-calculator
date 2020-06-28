@@ -18,7 +18,7 @@ class Header extends Component {
             <Router>
                 <div className="header">
                 <Navbar bg="light" variant="light">
-                    <Navbar.Brand as={Link} to="/">Covid Data and Calculator</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/">Covid-19 Data Tracker and Calculator</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/Calculator">Calculator</Nav.Link>

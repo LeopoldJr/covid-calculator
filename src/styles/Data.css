@@ -1,8 +1,12 @@
 .Data{
-    margin: 1rem;
+    margin: 5rem;
     text-align: center;
 }
 
 .New-Country {
     padding: 1rem 1rem 1rem 1rem;
+    border-bottom: solid;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
 }
