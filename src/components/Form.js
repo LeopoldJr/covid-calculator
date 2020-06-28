@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import CheckIcon from '@material-ui/icons/Check';
@@ -7,9 +9,9 @@ import useInputState from "../hooks/useInputState";
 import "../styles/Form.css";
 
 function Form( props ) {
-    const [country, changeCountry, resetCountry] = useInputState("");
-    //const [countryCases, changeCountryCases, resetCountryCases] = useInputState("");
-    const [numOfContacts, changeNumOfContacts, resetContacts] = useInputState("");
+    const [country, changeCountry] = useInputState("");
+
+    const [numOfContacts, changeNumOfContacts] = useInputState("");
 
     const [isQuaratined, setIsQuaratined] = React.useState(false);
     const [isFrequentlyOutside, setIsFrequentlyOutside] = React.useState(false);
@@ -104,23 +106,12 @@ function Form( props ) {
                 <CheckIcon />
                 </ToggleButton>
             </div>
-            <button onClick={ (e) => handleSubmit(e)}>Calculate</button> 
+            <Button variant="secondary" onClick={ (e) => handleSubmit(e)}>Calculate</Button> 
             </form>
         </Paper>
-
-        {/* {data.response.map(data => (
-          
-          
-          <h1>{data.country}</h1>
-          
-          ))} */}
-        
         </div>
     )
 
 
 }
 export default Form;
-
-
-//props.calculate(country, numOfContacts, isQuaratined, isFrequentlyOutside)

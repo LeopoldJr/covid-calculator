@@ -1,4 +1,11 @@
 .Calculator{
-    margin: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 12rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
     text-align: left;
+}
+
+.center-h1{
+    text-align: center;
 }
